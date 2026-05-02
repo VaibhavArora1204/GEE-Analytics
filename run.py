@@ -92,6 +92,7 @@ def execute():
         return jsonify({'error': f'Internal server error: {str(e)}'}), 500
 
 @app.route('/initial', methods=['POST'])
+
 def analyze_initial():
     try:
         data = request.get_json()
@@ -125,6 +126,10 @@ def analyze_initial():
         return jsonify({'error': str(e)}), 400
     except Exception as e:
         return jsonify({'error': f'Internal server error: {str(e)}'}), 500
+
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({'status': 'ok'}), 200
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
